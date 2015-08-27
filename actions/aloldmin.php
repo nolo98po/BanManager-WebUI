@@ -9,36 +9,16 @@
  *  Additional licence terms at https://raw.githubusercontent.com/BanManagement/BanManager-WebUI/master/LICENSE
  */
 
-if(empty($settings['password']) || $settings['password'] == 'password')
-	errors('You have not set a password. For your security, it\'s required that you set one.');
-else if(isset($_SESSION['failed_attempts']) && $_SESSION['failed_attempts'] > 4) {
-	die(errors('You have reached the maximum number of attempts. Please try again in 30 minutes.'));
-	if($_SESSION['failed_attempt'] < time())
-		unset($_SESSION['failed_attempts']);
-} else if(!isset($_SESSION['admin']) && !isset($_POST['password'])) {
-	?><form action="" method="post" class="well form-inline">
-	<h3>Admin Control Panel <small>&mdash; If you forgot your password please refer to settings.php to change it.</small></h3>
-	<div class="row">
-		<div class="col-lg-6">
-		<?php
 			if(!empty($errors)){
 				foreach ($errors as $error) {
 					echo $error;
 				}
 			}
-		?>
-			<div class="input-group">
-			<input type="password" class="form-control" name="password" placeholder="Password">
-				<span class="input-group-btn">
-				<button class="btn btn-info" type="submit">Sign In</button>
+		?>on class="btn btn-info" type="submit">Sign In</button>
 					</span>
 				</div>
 			</div>
-		</div>
-		</form><?php
-} else if(isset($_POST['password']) && !isset($_SESSION['admin'])) {
-	if(htmlspecialchars_decode($_POST['password'], ENT_QUOTES) != $settings['password']) {
-		//set how long we want them to have to wait after 5 wrong attempts
+		</div>e to wait after 5 wrong attempts
 		$time = 1800; //make them wait 30 mins
 		if(isset($_SESSION['failed_attempts']))
 			++$_SESSION['failed_attempts'];
@@ -60,11 +40,6 @@ else if(isset($_SESSION['failed_attempts']) && $_SESSION['failed_attempts'] > 4)
 				<th>Server Name</th>
 				<th>Options</th>
 			</tr>
-		</thead>
-		<tbody><?php
-	if(empty($settings['servers']))
-		echo '<tr id="noservers"><td colspan="2">No Servers Defined</td></tr>';
-	else {
 		$id = array_keys($settings['servers']);
 		$i = 0;
 		$count = count($settings['servers']) - 1;
@@ -81,10 +56,7 @@ else if(isset($_SESSION['failed_attempts']) && $_SESSION['failed_attempts'] > 4)
 					<a href="#" class="btn reorderServer" data-order="down" data-serverid="'.$id[$i].'"><span class="glyphicon glyphicon-arrow-down"></span></a>';
 				else if($i == $count)
 					echo '
-					<a href="#" class="btn reorderServer" data-order="up" data-serverid="'.$id[$i].'"><span class="glyphicon glyphicon-arrow-up"></span></a>';
-				else {
-					echo '
-					<a href="#" class="btn reorderServer" data-order="up" data-serverid="'.$id[$i].'"><span class="glyphicon glyphicon-arrow-up"></span></a>
+				href="#" class="btn reorderServer" data-order="up" data-serverid="'.$id[$i].'"><span class="glyphicon glyphicon-arrow-up"></span></a>
 					<a href="#" class="btn reorderServer" data-order="down" data-serverid="'.$id[$i].'"><span class="glyphicon glyphicon-arrow-down"></span></a>';
 				}
 			}
@@ -100,21 +72,14 @@ else if(isset($_SESSION['failed_attempts']) && $_SESSION['failed_attempts'] > 4)
 		<tfoot>
 			<tr>
 				<td colspan="2">
-		<?php
-	if(!is_writable('settings.php')) {
-		echo '<a class="btn btn-primary btn-large disabled" href="#addserver" title="Settings file not writable">Add Server</a>';
-	} else
-		echo '<a class="btn btn-primary btn-large" href="#addserver" data-toggle="modal">Add Server</a>';
+		<?php(lol) btn-primary btn-large" href="#addserver" data-toggle="modal">Add Server</a>';
 	?>
 
 				</td>
 			</tr>
 		</tfoot>
 	</table>
-	<div class="modal fade" id="addserver">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form class="form-horizontal" action="" method="post">
+	<div class="modal fade" id="addrizontal" action="" method="post">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h3>Add Server</h3>
